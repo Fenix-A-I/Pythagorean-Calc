@@ -40,16 +40,30 @@ def main():
     a = None
     b = None
     c = None
+    explain = None
     
     try:
         print("\n========== Pythagorean Theorem Calculator ==========\n") 
         while(1):
             char_input = input("Do you want to calculate side c (hypotenuse) or side a/b? (a/b/c or exit): ").strip().lower()
+            explain = input("Do you want to see the steps? (y/n): ").strip().lower()
+            while explain not in ['y', 'n']:
+                print("\033[91mInvalid input. Please enter 'y' or 'n'.\033[0m")
+                explain = input("Do you want to see the steps? (y/n): ").strip().lower()
+
             if char_input == 'c':
                 a = get_positive_float("\nEnter the length of side a: ")
                 b = get_positive_float("Enter the length of side b: ")
                 print(f"\n\033[92mThe length of side c (hypotenuse) is: {calc_side_c(a, b)}\033[0m")
-                print(f"\033[92mThe area of the triangle is: {calc_area(a, b)}\033[0m")
+                if explain == 'y':
+                    print("Steps:")
+                    print(f"1) a^2 + b^2 = c^2")
+                    print(f"2) {a}^2 + {b}^2 = c^2")
+                    print(f"3) {pow(a, 2)} + {pow(b, 2)} = c^2")
+                    print(f"4) {pow(a, 2) + pow(b, 2)} = c^2")
+                    print(f"5) {calc_side_c(a, b)} = c")
+
+                print(f"\n\033[92mThe area of the triangle is: {calc_area(a, b)}\033[0m")
                 print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, b, calc_side_c(a, b))}\033[0m")
                 break
             
@@ -63,7 +77,15 @@ def main():
                     break
 
                 print(f"\033[92m\nThe length of side a is: {calc_side_ab(b, c)}\033[0m")
-                print(f"\033[92mThe area of the triangle is: {calc_area(b, c)}\033[0m")
+                if explain == 'y':
+                    print("Steps:")
+                    print(f"1) c^2 - b^2 = a^2")
+                    print(f"2) {c}^2 - {b}^2 = a^2")
+                    print(f"3) {pow(c, 2)} - {pow(b, 2)} = a^2")
+                    print(f"4) {pow(c, 2) - pow(b, 2)} = a^2")
+                    print(f"5) {calc_side_ab(b, c)} = a")
+
+                print(f"\n\033[92mThe area of the triangle is: {calc_area(b, c)}\033[0m")
                 print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(b, c, calc_side_ab(b, c))}\033[0m")
                 break
 
@@ -77,7 +99,15 @@ def main():
                     break
 
                 print(f"\033[92m\nThe length of side b is: {calc_side_ab(a, c)}\033[0m")
-                print(f"\033[92mThe area of the triangle is: {calc_area(a, c)}\033[0m")
+                if explain == 'y':
+                    print("Steps:")
+                    print(f"1) c^2 - a^2 = b^2")
+                    print(f"2) {c}^2 - {a}^2 = b^2")
+                    print(f"3) {pow(c, 2)} - {pow(a, 2)} = b^2")
+                    print(f"4) {pow(c, 2) - pow(a, 2)} = b^2")
+                    print(f"5) {calc_side_ab(a, c)} = b")
+
+                print(f"\n\033[92mThe area of the triangle is: {calc_area(a, c)}\033[0m")
                 print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, c, calc_side_ab(a, c))}\033[0m")
                 break
 
