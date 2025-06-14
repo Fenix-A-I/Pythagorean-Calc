@@ -17,3 +17,53 @@ def calc_side_ab(ab, c):
     # a^2 = c^2 - b^2
     # b^2 = c^2 - a^2
     return round(math.sqrt(pow(c, 2) - pow(ab, 2)), 2)
+
+def get_positive_float(prompt):
+    while True:
+        value = float(input(prompt))
+        if value > 0:
+            return value
+        print("\033[91mValue must be greater than 0.\033[0m")
+
+def main():
+
+    char_input = None
+    a = None
+    b = None
+    c = None
+    
+    try:
+        print("\n========== Pythagorean Theorem Calculator ==========\n") 
+        while(1):
+            char_input = input("Do you want to calculate side c (hypotenuse) or side a/b? (a/b/c): ").strip().lower()
+            if char_input == 'c':
+                a = get_positive_float("Enter the length of side a: ")
+                b = get_positive_float("Enter the length of side b: ")
+                print(f"The length of side c (hypotenuse) is: {calc_side_c(a, b)}")
+                break
+            
+            elif char_input == 'a':
+                c = get_positive_float("Enter the length of side c (hypotenuse): ")
+                b = get_positive_float("Enter the length of side b: ")
+                if b >= c:
+                    print("\033[91mSide b must be less than side c (hypotenuse).\033[0m")
+                    continue
+                print(f"The length of side a is: {calc_side_ab(b, c)}")
+                break
+
+            elif char_input == 'b':
+                c = get_positive_float("Enter the length of side c (hypotenuse): ")
+                a = get_positive_float("Enter the length of side a: ")
+                if a >= c:
+                    print("\033[91mSide a must be less than side c (hypotenuse).\033[0m")
+                    continue
+                print(f"The length of side b is: {calc_side_ab(a, c)}")
+                break
+            else:
+                print("\033[91mInvalid input. Please enter 'a', 'b', or 'c'.\033[0m")
+
+    except KeyboardInterrupt:
+        print("\n\033[93m Program interrupted. Exiting gracefully.\033[0m\n")
+
+if __name__ == "__main__":
+    main()
