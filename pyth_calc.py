@@ -38,11 +38,11 @@ def main():
     try:
         print("\n========== Pythagorean Theorem Calculator ==========\n") 
         while(1):
-            char_input = input("Do you want to calculate side c (hypotenuse) or side a/b? (a/b/c): ").strip().lower()
+            char_input = input("Do you want to calculate side c (hypotenuse) or side a/b? (a/b/c or exit): ").strip().lower()
             if char_input == 'c':
                 a = get_positive_float("\nEnter the length of side a: ")
                 b = get_positive_float("Enter the length of side b: ")
-                print(f"\nThe length of side c (hypotenuse) is: {calc_side_c(a, b)}\n")
+                print(f"\n\033[92mThe length of side c (hypotenuse) is: {calc_side_c(a, b)}\033[0m")
                 break
             
             elif char_input == 'a':
@@ -50,10 +50,10 @@ def main():
                     c = get_positive_float("\nEnter the length of side c (hypotenuse): ")
                     b = get_positive_float("Enter the length of side b: ")
                     if b >= c:
-                        print("\033[91mSide b must be less than side c (hypotenuse).\033[0m\n")
+                        print("\033[91mSide b must be less than side c (hypotenuse).\033[0m")
                         continue
                     break
-                print(f"\nThe length of side a is: {calc_side_ab(b, c)}")
+                print(f"\033[92m\nThe length of side a is: {calc_side_ab(b, c)}\033[0m")
                 break
 
             elif char_input == 'b':
@@ -61,10 +61,13 @@ def main():
                     c = get_positive_float("\nEnter the length of side c (hypotenuse): ")
                     a = get_positive_float("Enter the length of side a: ")
                     if a >= c:
-                        print("\033[91mSide a must be less than side c (hypotenuse).\033[0m\n")
+                        print("\033[91mSide a must be less than side c (hypotenuse).\033[0m")
                         continue
                     break
-                print(f"\nThe length of side b is: {calc_side_ab(a, c)}")
+                print(f"\033[92m\nThe length of side b is: {calc_side_ab(a, c)}\033[0m")
+                break
+            elif char_input == 'exit':
+                print("\033[93m Exiting the program\033[0m")
                 break
             else:
                 print("\033[91mInvalid input. Please enter 'a', 'b', or 'c'.\033[0m\n")
