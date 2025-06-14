@@ -28,6 +28,12 @@ def get_positive_float(prompt):
         except ValueError:
             print("\033[91mInvalid input. Please enter a numeric value.\033[0m")
 
+def calc_area(a, b):
+    return round(0.5 * a * b, 2)
+
+def calc_perimeter(a, b, c):
+    return round(a + b + c, 2)
+
 def main():
 
     char_input = None
@@ -43,6 +49,8 @@ def main():
                 a = get_positive_float("\nEnter the length of side a: ")
                 b = get_positive_float("Enter the length of side b: ")
                 print(f"\n\033[92mThe length of side c (hypotenuse) is: {calc_side_c(a, b)}\033[0m")
+                print(f"\033[92mThe area of the triangle is: {calc_area(a, b)}\033[0m")
+                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, b, calc_side_c(a, b))}\033[0m")
                 break
             
             elif char_input == 'a':
@@ -53,7 +61,10 @@ def main():
                         print("\033[91mSide b must be less than side c (hypotenuse).\033[0m")
                         continue
                     break
+
                 print(f"\033[92m\nThe length of side a is: {calc_side_ab(b, c)}\033[0m")
+                print(f"\033[92mThe area of the triangle is: {calc_area(b, c)}\033[0m")
+                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(b, c, calc_side_ab(b, c))}\033[0m")
                 break
 
             elif char_input == 'b':
@@ -64,8 +75,12 @@ def main():
                         print("\033[91mSide a must be less than side c (hypotenuse).\033[0m")
                         continue
                     break
+
                 print(f"\033[92m\nThe length of side b is: {calc_side_ab(a, c)}\033[0m")
+                print(f"\033[92mThe area of the triangle is: {calc_area(a, c)}\033[0m")
+                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, c, calc_side_ab(a, c))}\033[0m")
                 break
+
             elif char_input == 'exit':
                 print("\033[93m Exiting the program\033[0m")
                 break
