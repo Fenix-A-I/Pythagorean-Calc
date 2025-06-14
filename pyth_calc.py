@@ -22,6 +22,8 @@ def get_positive_float(prompt):
     while True:
         try:
             value = float(input(prompt))
+            if value.is_integer():
+                value = int(value)
             if value > 0:
                 return value
             print("\033[91mValue must be greater than 0.\033[0m")
@@ -41,7 +43,8 @@ def main():
     b = None
     c = None
     explain = None
-    
+    answer = None
+
     try:
         print("\n========== Pythagorean Theorem Calculator ==========\n") 
         while(1):
@@ -54,17 +57,21 @@ def main():
             if char_input == 'c':
                 a = get_positive_float("\nEnter the length of side a: ")
                 b = get_positive_float("Enter the length of side b: ")
-                print(f"\n\033[92mThe length of side c (hypotenuse) is: {calc_side_c(a, b)}\033[0m")
+
+                answer = calc_side_c(a, b)
+                print(f"\n\033[92mThe length of side c (hypotenuse) is: {answer}\033[0m")
                 if explain == 'y':
                     print("Steps:")
                     print(f"1) a^2 + b^2 = c^2")
                     print(f"2) {a}^2 + {b}^2 = c^2")
-                    print(f"3) {pow(a, 2)} + {pow(b, 2)} = c^2")
-                    print(f"4) {pow(a, 2) + pow(b, 2)} = c^2")
-                    print(f"5) {calc_side_c(a, b)} = c")
+                    print(f"3) {round(pow(a, 2), 2)} + {round(pow(b, 2), 2)} = c^2")
+                    print(f"4) {round(pow(a, 2), 2) + round(pow(b, 2), 2)} = c^2")
+                    if answer.is_integer():
+                        answer = int(answer)
+                    print(f"5) {answer} = c")
 
                 print(f"\n\033[92mThe area of the triangle is: {calc_area(a, b)}\033[0m")
-                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, b, calc_side_c(a, b))}\033[0m")
+                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, b, answer)}\033[0m")
                 break
             
             elif char_input == 'a':
@@ -76,17 +83,20 @@ def main():
                         continue
                     break
 
-                print(f"\033[92m\nThe length of side a is: {calc_side_ab(b, c)}\033[0m")
+                answer = calc_side_ab(b, c)
+                print(f"\033[92m\nThe length of side a is: {answer}\033[0m")
                 if explain == 'y':
                     print("Steps:")
                     print(f"1) c^2 - b^2 = a^2")
                     print(f"2) {c}^2 - {b}^2 = a^2")
-                    print(f"3) {pow(c, 2)} - {pow(b, 2)} = a^2")
-                    print(f"4) {pow(c, 2) - pow(b, 2)} = a^2")
-                    print(f"5) {calc_side_ab(b, c)} = a")
+                    print(f"3) {round(pow(c, 2), 2)} - {round(pow(b, 2), 2)} = a^2")
+                    print(f"4) {round(pow(c, 2), 2) - round(pow(b, 2), 2)} = a^2")
+                    if answer.is_integer():
+                        answer = int(answer)
+                    print(f"5) {answer} = a")
 
                 print(f"\n\033[92mThe area of the triangle is: {calc_area(b, c)}\033[0m")
-                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(b, c, calc_side_ab(b, c))}\033[0m")
+                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(b, c, answer)}\033[0m")
                 break
 
             elif char_input == 'b':
@@ -98,17 +108,20 @@ def main():
                         continue
                     break
 
-                print(f"\033[92m\nThe length of side b is: {calc_side_ab(a, c)}\033[0m")
+                answer = calc_side_ab(a, c)
+                print(f"\033[92m\nThe length of side b is: {answer}\033[0m")
                 if explain == 'y':
                     print("Steps:")
                     print(f"1) c^2 - a^2 = b^2")
                     print(f"2) {c}^2 - {a}^2 = b^2")
-                    print(f"3) {pow(c, 2)} - {pow(a, 2)} = b^2")
-                    print(f"4) {pow(c, 2) - pow(a, 2)} = b^2")
-                    print(f"5) {calc_side_ab(a, c)} = b")
+                    print(f"3) {round(pow(c, 2), 2)} - {round(pow(a, 2), 2)} = b^2")
+                    print(f"4) {round(pow(c, 2), 2) - round(pow(a, 2), 2)} = b^2")
+                    if answer.is_integer():
+                        answer = int(answer)
+                    print(f"5) {answer} = b")
 
                 print(f"\n\033[92mThe area of the triangle is: {calc_area(a, c)}\033[0m")
-                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, c, calc_side_ab(a, c))}\033[0m")
+                print(f"\033[92mThe perimeter of the triangle is: {calc_perimeter(a, c, answer)}\033[0m")
                 break
 
             elif char_input == 'exit':
